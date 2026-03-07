@@ -1,0 +1,152 @@
+@import "tailwindcss";
+@import url('https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,500;12..96,700;12..96,800&family=Instrument+Serif:ital@0;1&display=swap');
+
+:root {
+  --bg-color: #030303;
+  /* Pure void black */
+  --surface-color: #0c0c0c;
+  /* Slightly raised dark */
+  --text-main: #f5f5f5;
+  /* Bright ash white */
+  --text-dim: #737373;
+  /* Muted gray for secondary info */
+  --border-color: #1a1a1a;
+  /* Extremely subtle borders */
+
+  --font-sans: 'Bricolage Grotesque', sans-serif;
+  --font-serif: 'Instrument Serif', serif;
+
+  --ease-elastic: cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  --ease-smooth: cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+  background-color: var(--bg-color);
+}
+
+body {
+  background-color: var(--bg-color);
+  color: var(--text-main);
+  font-family: var(--font-sans);
+  -webkit-font-smoothing: antialiased;
+  overflow-x: hidden;
+}
+
+::-webkit-scrollbar {
+  width: 4px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--bg-color);
+}
+
+::-webkit-scrollbar-thumb {
+  background: #333;
+}
+
+/* Ultra-premium typography classes */
+.typo-display {
+  font-family: var(--font-serif);
+  font-size: clamp(60px, 12vw, 180px);
+  font-weight: 400;
+  line-height: 0.9;
+  letter-spacing: -0.02em;
+}
+
+.typo-h2 {
+  font-family: var(--font-serif);
+  font-size: clamp(40px, 6vw, 80px);
+  font-weight: 400;
+  line-height: 1;
+  letter-spacing: -0.01em;
+}
+
+.typo-body {
+  font-family: var(--font-sans);
+  font-size: clamp(16px, 2vw, 20px);
+  font-weight: 400;
+  line-height: 1.5;
+  color: var(--text-dim);
+}
+
+.typo-meta {
+  font-family: var(--font-sans);
+  font-size: 13px;
+  font-weight: 600;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+}
+
+/* Background Noise Texture */
+.noise-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 9999;
+  pointer-events: none;
+  opacity: 0.03;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
+}
+
+/* Base utility for grid */
+.container {
+  width: 100%;
+  max-width: 1600px;
+  margin: 0 auto;
+  padding: 0 4vw;
+}
+
+/* The device frames housing the iframes */
+.device-macbook {
+  background: #111;
+  border-radius: 12px 12px 0 0;
+  padding: 1rem 1rem 1.5rem 1rem;
+  border: 1px solid #333;
+  box-shadow: 0 40px 100px rgba(0, 0, 0, 0.8);
+  position: relative;
+  width: 100%;
+  aspect-ratio: 16/10;
+}
+
+.device-macbook::before {
+  content: '';
+  position: absolute;
+  top: 8px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 60px;
+  height: 12px;
+  border-radius: 6px;
+  background: #000;
+}
+
+.device-phone {
+  background: #000;
+  border-radius: 44px;
+  padding: 12px;
+  border: 2px solid #222;
+  box-shadow: 0 40px 100px rgba(0, 0, 0, 0.8);
+  position: relative;
+  width: 300px;
+  height: 600px;
+  margin: 0 auto;
+}
+
+.device-phone::before {
+  content: '';
+  position: absolute;
+  top: 12px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 100px;
+  height: 24px;
+  border-radius: 12px;
+  background: #000;
+  z-index: 10;
+}
