@@ -1,6 +1,6 @@
-import { motion } from 'framer-motion'
-import { Activity, Flame, Heart, Timer, ArrowRight, ArrowUpRight, ArrowDownRight, CreditCard, Bell, ChevronDown, User, ArrowRightLeft, QrCode, Play, CheckCircle2, Zap } from 'lucide-react'
-
+import React, { useState, useEffect } from 'react'
+import { motion, AnimatePresence } from 'framer-motion'
+import { Activity, Flame, Heart, Timer, ArrowRight, ArrowUpRight, ArrowDownRight, CreditCard, Bell, ChevronDown, User, ArrowRightLeft, QrCode, Play, CheckCircle2, Zap, Camera, Mic, Volume2, RefreshCw, Settings, MessageSquare } from 'lucide-react'
 export const AuraFitUI = () => {
     return (
         <div style={{ width: '100%', height: '100%', backgroundColor: '#0A0A0A', position: 'relative', overflow: 'hidden', padding: '24px', color: '#fff', fontFamily: 'var(--font-sans)' }}>
@@ -381,3 +381,144 @@ export const LuminaLearnUI = () => {
     )
 }
 
+export const ISLTranslatorUI = () => {
+    const [screen, setScreen] = useState('splash')
+
+    useEffect(() => {
+        const timer = setTimeout(() => {
+            setScreen('home')
+        }, 2000)
+        return () => clearTimeout(timer)
+    }, [])
+
+    return (
+        <div style={{ width: '100%', height: '100%', backgroundColor: '#fff', position: 'relative', overflow: 'hidden', fontFamily: 'var(--font-sans)', color: '#111' }}>
+            <AnimatePresence mode="wait">
+                {screen === 'splash' && (
+                    <motion.div
+                        key="splash"
+                        initial={{ opacity: 1 }}
+                        exit={{ opacity: 0, scale: 1.1 }}
+                        transition={{ duration: 0.6 }}
+                        style={{ position: 'absolute', inset: 0, backgroundColor: '#f97316', display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', color: '#fff' }}
+                    >
+                        <motion.div animate={{ rotate: 360 }} transition={{ duration: 2, ease: "linear", repeat: Infinity }}>
+                            <RefreshCw size={48} color="#fff" />
+                        </motion.div>
+                        <div style={{ fontSize: '28px', fontWeight: 800, marginTop: '20px', letterSpacing: '-1px' }}>SignVoice</div>
+                        <div style={{ fontSize: '13px', fontWeight: 600, opacity: 0.8, marginTop: '8px' }}>Bridging the gap</div>
+                    </motion.div>
+                )}
+
+                {screen === 'home' && (
+                    <motion.div
+                        key="home"
+                        initial={{ opacity: 0, y: 20 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        exit={{ opacity: 0, x: -50 }}
+                        style={{ position: 'absolute', inset: 0, display: 'flex', flexDirection: 'column' }}
+                    >
+                        {/* Header */}
+                        <div style={{ padding: '30px 24px 20px', display: 'flex', justifyContent: 'space-between', alignItems: 'center', backgroundColor: '#f97316', color: '#fff', borderBottomLeftRadius: '24px', borderBottomRightRadius: '24px' }}>
+                            <div>
+                                <div style={{ fontSize: '14px', fontWeight: 600, opacity: 0.9 }}>Welcome back</div>
+                                <div style={{ fontSize: '22px', fontWeight: 800 }}>Avdhoot</div>
+                            </div>
+                            <div style={{ width: '40px', height: '40px', borderRadius: '50%', backgroundColor: 'rgba(255,255,255,0.2)', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+                                <Settings size={20} color="#fff" />
+                            </div>
+                        </div>
+
+                        {/* Content */}
+                        <div style={{ padding: '24px', flex: 1, display: 'flex', flexDirection: 'column', gap: '20px' }}>
+                            <motion.div
+                                whileHover={{ scale: 1.02 }}
+                                whileTap={{ scale: 0.98 }}
+                                onClick={() => setScreen('translate')}
+                                style={{ backgroundColor: '#fff', borderRadius: '20px', padding: '30px', boxShadow: '0 10px 30px rgba(0,0,0,0.05)', display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '16px', border: '1px solid #fce7f3', cursor: 'pointer' }}
+                            >
+                                <div style={{ width: '64px', height: '64px', borderRadius: '50%', backgroundColor: '#fff7ed', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+                                    <Camera size={32} color="#f97316" />
+                                </div>
+                                <div style={{ textAlign: 'center' }}>
+                                    <div style={{ fontSize: '18px', fontWeight: 700, color: '#111' }}>Live Translation</div>
+                                    <div style={{ fontSize: '13px', color: '#6b7280', marginTop: '4px' }}>Translate ISL gestures to text/speech instantly using your camera.</div>
+                                </div>
+                                <div style={{ marginTop: '10px', padding: '12px 30px', borderRadius: '100px', backgroundColor: '#f97316', color: '#fff', fontSize: '14px', fontWeight: 600 }}>Start Camera</div>
+                            </motion.div>
+
+                            <div style={{ backgroundColor: '#fff7ed', borderRadius: '20px', padding: '24px', display: 'flex', alignItems: 'center', gap: '16px', border: '1px solid #ffedd5' }}>
+                                <div style={{ width: '48px', height: '48px', borderRadius: '12px', backgroundColor: '#f97316', display: 'flex', alignItems: 'center', justifyContent: 'center', color: '#fff' }}>
+                                    <MessageSquare size={24} />
+                                </div>
+                                <div>
+                                    <div style={{ fontSize: '16px', fontWeight: 700, color: '#9a3412' }}>Lesson of the day</div>
+                                    <div style={{ fontSize: '13px', color: '#c2410c', marginTop: '2px' }}>Learn basic greetings</div>
+                                </div>
+                            </div>
+                        </div>
+                    </motion.div>
+                )}
+
+                {screen === 'translate' && (
+                    <motion.div
+                        key="translate"
+                        initial={{ opacity: 0, x: 50 }}
+                        animate={{ opacity: 1, x: 0 }}
+                        style={{ position: 'absolute', inset: 0, display: 'flex', flexDirection: 'column', backgroundColor: '#111' }}
+                    >
+                        {/* Camera Placeholder */}
+                        <div style={{ flex: 1, position: 'relative', overflow: 'hidden' }}>
+                            <div style={{ position: 'absolute', inset: 0, background: 'linear-gradient(135deg, #111, #2a1b12)', display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center' }}>
+                                <motion.div animate={{ opacity: [0.5, 1, 0.5] }} transition={{ duration: 2, repeat: Infinity }}>
+                                    <div style={{ width: '200px', height: '200px', border: '2px dashed #f97316', borderRadius: '20px', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+                                        <div style={{ fontSize: '12px', color: '#f97316', fontWeight: 600, letterSpacing: '1px' }}>DETECTING HAND...</div>
+                                    </div>
+                                </motion.div>
+                            </div>
+
+                            {/* Back Button */}
+                            <div
+                                onClick={() => setScreen('home')}
+                                style={{ position: 'absolute', top: '24px', left: '24px', width: '40px', height: '40px', borderRadius: '50%', backgroundColor: 'rgba(0,0,0,0.5)', backdropFilter: 'blur(10px)', display: 'flex', alignItems: 'center', justifyContent: 'center', cursor: 'pointer' }}
+                            >
+                                <ArrowRightLeft size={20} color="#fff" />
+                            </div>
+                        </div>
+
+                        {/* Translation Output Sheet */}
+                        <motion.div
+                            initial={{ y: 200 }}
+                            animate={{ y: 0 }}
+                            transition={{ type: 'spring', damping: 25, stiffness: 200, delay: 0.2 }}
+                            style={{ height: '220px', backgroundColor: '#fff', borderTopLeftRadius: '32px', borderTopRightRadius: '32px', padding: '30px 24px', display: 'flex', flexDirection: 'column', position: 'relative' }}
+                        >
+                            <div style={{ position: 'absolute', top: '12px', left: '50%', transform: 'translateX(-50%)', width: '40px', height: '4px', borderRadius: '2px', backgroundColor: '#e5e7eb' }}></div>
+
+                            <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '20px' }}>
+                                <div style={{ fontSize: '13px', fontWeight: 700, color: '#f97316', textTransform: 'uppercase', letterSpacing: '1px' }}>Translation</div>
+                                <motion.div whileTap={{ scale: 0.9 }} style={{ width: '40px', height: '40px', borderRadius: '50%', backgroundColor: '#fff7ed', display: 'flex', alignItems: 'center', justifyContent: 'center', cursor: 'pointer' }}>
+                                    <Volume2 size={20} color="#f97316" />
+                                </motion.div>
+                            </div>
+
+                            <motion.div
+                                initial={{ opacity: 0 }}
+                                animate={{ opacity: 1 }}
+                                transition={{ delay: 1 }}
+                            >
+                                <div style={{ fontSize: '28px', fontWeight: 800, color: '#111', lineHeight: 1.2 }}>
+                                    Hello, how are you today?
+                                </div>
+                                <div style={{ fontSize: '14px', color: '#6b7280', marginTop: '12px', display: 'flex', alignItems: 'center', gap: '8px' }}>
+                                    <div style={{ width: '8px', height: '8px', borderRadius: '50%', backgroundColor: '#10b981' }}></div>
+                                    Continuous translation active
+                                </div>
+                            </motion.div>
+                        </motion.div>
+                    </motion.div>
+                )}
+            </AnimatePresence>
+        </div>
+    )
+}

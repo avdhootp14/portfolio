@@ -40,6 +40,20 @@ const projects = [
         overview: 'A bite-sized learning platform that uses spaced repetition and daily micro-habits to teach complex technical concepts. Designed to feel more like a game than a textbook.',
         mediaType: 'component',
         componentName: 'LuminaLearnUI'
+    },
+    {
+        id: 'isl-translator',
+        num: '04',
+        title: 'SignVoice Translator',
+        client: 'Accessibility Initiative',
+        role: 'Full Stack App Developer',
+        year: '2026',
+        tags: ['Accessibility', 'React Native', 'ML Vision'],
+        deviceType: 'mobile',
+        color: '#f97316', // Orange theme requested
+        overview: 'An accessible Indian Sign Language (ISL) to text and speech conversion mobile app. Features real-time camera translation and text-to-speech feedback.',
+        mediaType: 'component',
+        componentName: 'ISLTranslatorUI'
     }
 ]
 
