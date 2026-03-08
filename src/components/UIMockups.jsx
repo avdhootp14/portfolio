@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
-import { Activity, Flame, Heart, Timer, ArrowRight, ArrowUpRight, ArrowDownRight, CreditCard, Bell, ChevronDown, User, ArrowRightLeft, QrCode, Play, CheckCircle2, Zap, Camera, Mic, Volume2, RefreshCw, Settings, MessageSquare } from 'lucide-react'
+import { Activity, Flame, Heart, Timer, ArrowRight, ArrowUpRight, ArrowDownRight, CreditCard, Bell, ChevronDown, User, ArrowRightLeft, QrCode, Play, CheckCircle2, Zap, Camera, Mic, Volume2, RefreshCw, Settings, MessageSquare, Search, PlayCircle, ArrowLeft, LogOut, ChevronRight, Edit2, Home } from 'lucide-react'
 export const AuraFitUI = () => {
     return (
         <div style={{ width: '100%', height: '100%', backgroundColor: '#0A0A0A', position: 'relative', overflow: 'hidden', padding: '24px', color: '#fff', fontFamily: 'var(--font-sans)' }}>
