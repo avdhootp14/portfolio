@@ -31,10 +31,15 @@ const Contact = () => {
                 <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', flexWrap: 'wrap', gap: '4vh' }}>
                     <span className="typo-meta" style={{ color: 'var(--text-dim)' }}>© {new Date().getFullYear()} Avdhoot Pimparkar</span>
 
-                    <div style={{ display: 'flex', gap: '4vw' }}>
-                        {['GitHub', 'LinkedIn', 'X/Twitter', 'Dribbble'].map(link => (
-                            <a key={link} href="#" className="typo-meta" style={{ color: 'var(--text-dim)', textDecoration: 'none', transition: 'color 0.2s' }} onMouseOver={e => e.currentTarget.style.color = 'var(--text-main)'} onMouseOut={e => e.currentTarget.style.color = 'var(--text-dim)'}>
-                                {link}
+                    <div style={{ display: 'flex', gap: '4vw', flexWrap: 'wrap' }}>
+                        {[
+                            { name: 'GitHub', url: 'https://www.github.com/avdhootp14' },
+                            { name: 'LinkedIn', url: 'https://www.linkedin.com/in/avdhootp144' },
+                            { name: 'X/Twitter', url: '#' },
+                            { name: 'Dribbble', url: '#' }
+                        ].map(link => (
+                            <a key={link.name} href={link.url} target="_blank" rel="noopener noreferrer" className="typo-meta" style={{ color: 'var(--text-dim)', textDecoration: 'none', transition: 'color 0.2s' }} onMouseOver={e => e.currentTarget.style.color = 'var(--text-main)'} onMouseOut={e => e.currentTarget.style.color = 'var(--text-dim)'}>
+                                {link.name}
                             </a>
                         ))}
                     </div>
