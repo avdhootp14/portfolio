@@ -1,11 +1,12 @@
 import { motion } from 'framer-motion'
 import projects from '../data/caseStudies'
-import { AuraFitUI, NovaPayUI, LuminaLearnUI } from './UIMockups'
+import { AuraFitUI, NovaPayUI, LuminaLearnUI, ISLTranslatorUI } from './UIMockups'
 
 const componentsMap = {
     AuraFitUI,
     NovaPayUI,
-    LuminaLearnUI
+    LuminaLearnUI,
+    ISLTranslatorUI
 }
 
 const DeviceMedia = ({ project }) => {
