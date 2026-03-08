@@ -19,12 +19,18 @@ const Contact = () => {
                         </h2>
                     </div>
 
-                    <a href="mailto:avdhoot144@gmail.com" style={{ textDecoration: 'none', color: 'var(--text-main)', display: 'flex', alignItems: 'center', gap: '8px', borderBottom: '1px solid var(--text-main)', paddingBottom: '8px' }}>
-                        <span className="typo-meta">Initiate Sequence</span>
+                    <div
+                        onClick={() => {
+                            navigator.clipboard.writeText('avdhoot144@gmail.com');
+                            alert('Email copied to clipboard!');
+                        }}
+                        style={{ cursor: 'pointer', color: 'var(--text-main)', display: 'flex', alignItems: 'center', gap: '8px', borderBottom: '1px solid var(--text-main)', paddingBottom: '8px' }}
+                    >
+                        <span className="typo-meta">avdhoot144@gmail.com</span>
                         <motion.div whileHover={{ x: 4, y: -4, color: '#E0FF00' }} transition={{ type: 'spring', stiffness: 300 }}>
                             <ArrowUpRight size={18} />
                         </motion.div>
-                    </a>
+                    </div>
 
                 </div>
 
