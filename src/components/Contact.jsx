@@ -1,7 +1,10 @@
+import { useState } from 'react'
 import { motion } from 'framer-motion'
 import { ArrowUpRight } from 'lucide-react'
 
 const Contact = () => {
+    const [isHoveringEmail, setIsHoveringEmail] = useState(false)
+
     return (
         <footer id="connect" style={{ position: 'relative', borderTop: '1px solid var(--border-color)', overflow: 'hidden' }}>
 
@@ -19,18 +22,21 @@ const Contact = () => {
                         </h2>
                     </div>
 
-                    <div
-                        onClick={() => {
-                            navigator.clipboard.writeText('avdhoot144@gmail.com');
-                            alert('Email copied to clipboard!');
-                        }}
-                        style={{ cursor: 'pointer', color: 'var(--text-main)', display: 'flex', alignItems: 'center', gap: '8px', borderBottom: '1px solid var(--text-main)', paddingBottom: '8px' }}
+                    <a
+                        href="mailto:avdhoot144@gmail.com"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        onMouseEnter={() => setIsHoveringEmail(true)}
+                        onMouseLeave={() => setIsHoveringEmail(false)}
+                        style={{ textDecoration: 'none', color: 'var(--text-main)', display: 'flex', alignItems: 'center', gap: '8px', borderBottom: '1px solid var(--text-main)', paddingBottom: '8px', cursor: 'pointer' }}
                     >
-                        <span className="typo-meta">avdhoot144@gmail.com</span>
+                        <span className="typo-meta" style={{ transition: 'color 0.3s' }}>
+                            {isHoveringEmail ? "Connect with avdhoot144@gmail.com" : "INITIATE SEQUENCE"}
+                        </span>
                         <motion.div whileHover={{ x: 4, y: -4, color: '#E0FF00' }} transition={{ type: 'spring', stiffness: 300 }}>
                             <ArrowUpRight size={18} />
                         </motion.div>
-                    </div>
+                    </a>
 
                 </div>
 
