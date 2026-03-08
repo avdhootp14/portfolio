@@ -383,16 +383,17 @@ export const LuminaLearnUI = () => {
 
 export const ISLTranslatorUI = () => {
     const [screen, setScreen] = useState('splash')
+    const [activeTab, setActiveTab] = useState('home')
 
     useEffect(() => {
         const timer = setTimeout(() => {
-            setScreen('home')
+            setScreen('main')
         }, 2000)
         return () => clearTimeout(timer)
     }, [])
 
     return (
-        <div style={{ width: '100%', height: '100%', backgroundColor: '#fff', position: 'relative', overflow: 'hidden', fontFamily: 'var(--font-sans)', color: '#111' }}>
+        <div style={{ width: '100%', height: '100%', backgroundColor: '#fff', position: 'relative', overflow: 'hidden', fontFamily: 'var(--font-sans)', color: '#111', display: 'flex', flexDirection: 'column' }}>
             <AnimatePresence mode="wait">
                 {screen === 'splash' && (
                     <motion.div
@@ -400,7 +401,7 @@ export const ISLTranslatorUI = () => {
                         initial={{ opacity: 1 }}
                         exit={{ opacity: 0, scale: 1.1 }}
                         transition={{ duration: 0.6 }}
-                        style={{ position: 'absolute', inset: 0, backgroundColor: '#f97316', display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', color: '#fff' }}
+                        style={{ position: 'absolute', inset: 0, backgroundColor: '#f97316', display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', color: '#fff', zIndex: 50 }}
                     >
                         <motion.div animate={{ rotate: 360 }} transition={{ duration: 2, ease: "linear", repeat: Infinity }}>
                             <RefreshCw size={48} color="#fff" />
@@ -410,62 +411,12 @@ export const ISLTranslatorUI = () => {
                     </motion.div>
                 )}
 
-                {screen === 'home' && (
-                    <motion.div
-                        key="home"
-                        initial={{ opacity: 0, y: 20 }}
-                        animate={{ opacity: 1, y: 0 }}
-                        exit={{ opacity: 0, x: -50 }}
-                        style={{ position: 'absolute', inset: 0, display: 'flex', flexDirection: 'column' }}
-                    >
-                        {/* Header */}
-                        <div style={{ padding: '30px 24px 20px', display: 'flex', justifyContent: 'space-between', alignItems: 'center', backgroundColor: '#f97316', color: '#fff', borderBottomLeftRadius: '24px', borderBottomRightRadius: '24px' }}>
-                            <div>
-                                <div style={{ fontSize: '14px', fontWeight: 600, opacity: 0.9 }}>Welcome back</div>
-                                <div style={{ fontSize: '22px', fontWeight: 800 }}>Avdhoot</div>
-                            </div>
-                            <div style={{ width: '40px', height: '40px', borderRadius: '50%', backgroundColor: 'rgba(255,255,255,0.2)', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
-                                <Settings size={20} color="#fff" />
-                            </div>
-                        </div>
-
-                        {/* Content */}
-                        <div style={{ padding: '24px', flex: 1, display: 'flex', flexDirection: 'column', gap: '20px' }}>
-                            <motion.div
-                                whileHover={{ scale: 1.02 }}
-                                whileTap={{ scale: 0.98 }}
-                                onClick={() => setScreen('translate')}
-                                style={{ backgroundColor: '#fff', borderRadius: '20px', padding: '30px', boxShadow: '0 10px 30px rgba(0,0,0,0.05)', display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '16px', border: '1px solid #fce7f3', cursor: 'pointer' }}
-                            >
-                                <div style={{ width: '64px', height: '64px', borderRadius: '50%', backgroundColor: '#fff7ed', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
-                                    <Camera size={32} color="#f97316" />
-                                </div>
-                                <div style={{ textAlign: 'center' }}>
-                                    <div style={{ fontSize: '18px', fontWeight: 700, color: '#111' }}>Live Translation</div>
-                                    <div style={{ fontSize: '13px', color: '#6b7280', marginTop: '4px' }}>Translate ISL gestures to text/speech instantly using your camera.</div>
-                                </div>
-                                <div style={{ marginTop: '10px', padding: '12px 30px', borderRadius: '100px', backgroundColor: '#f97316', color: '#fff', fontSize: '14px', fontWeight: 600 }}>Start Camera</div>
-                            </motion.div>
-
-                            <div style={{ backgroundColor: '#fff7ed', borderRadius: '20px', padding: '24px', display: 'flex', alignItems: 'center', gap: '16px', border: '1px solid #ffedd5' }}>
-                                <div style={{ width: '48px', height: '48px', borderRadius: '12px', backgroundColor: '#f97316', display: 'flex', alignItems: 'center', justifyContent: 'center', color: '#fff' }}>
-                                    <MessageSquare size={24} />
-                                </div>
-                                <div>
-                                    <div style={{ fontSize: '16px', fontWeight: 700, color: '#9a3412' }}>Lesson of the day</div>
-                                    <div style={{ fontSize: '13px', color: '#c2410c', marginTop: '2px' }}>Learn basic greetings</div>
-                                </div>
-                            </div>
-                        </div>
-                    </motion.div>
-                )}
-
                 {screen === 'translate' && (
                     <motion.div
                         key="translate"
                         initial={{ opacity: 0, x: 50 }}
                         animate={{ opacity: 1, x: 0 }}
-                        style={{ position: 'absolute', inset: 0, display: 'flex', flexDirection: 'column', backgroundColor: '#111' }}
+                        style={{ position: 'absolute', inset: 0, display: 'flex', flexDirection: 'column', backgroundColor: '#111', zIndex: 40 }}
                     >
                         {/* Camera Placeholder */}
                         <div style={{ flex: 1, position: 'relative', overflow: 'hidden' }}>
@@ -479,7 +430,7 @@ export const ISLTranslatorUI = () => {
 
                             {/* Back Button */}
                             <div
-                                onClick={() => setScreen('home')}
+                                onClick={() => setScreen('main')}
                                 style={{ position: 'absolute', top: '24px', left: '24px', width: '40px', height: '40px', borderRadius: '50%', backgroundColor: 'rgba(0,0,0,0.5)', backdropFilter: 'blur(10px)', display: 'flex', alignItems: 'center', justifyContent: 'center', cursor: 'pointer' }}
                             >
                                 <ArrowRightLeft size={20} color="#fff" />
@@ -516,6 +467,133 @@ export const ISLTranslatorUI = () => {
                                 </div>
                             </motion.div>
                         </motion.div>
+                    </motion.div>
+                )}
+
+                {screen === 'main' && (
+                    <motion.div
+                        key="main"
+                        initial={{ opacity: 0 }}
+                        animate={{ opacity: 1 }}
+                        style={{ flex: 1, display: 'flex', flexDirection: 'column' }}
+                    >
+                        {/* Main Content Area based on Active Tab */}
+                        <div style={{ flex: 1, overflowY: 'auto' }}>
+                            {activeTab === 'home' && (
+                                <motion.div initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }} style={{ paddingBottom: '20px' }}>
+                                    {/* Header */}
+                                    <div style={{ padding: '30px 24px 20px', display: 'flex', justifyContent: 'space-between', alignItems: 'center', backgroundColor: '#fff', color: '#111' }}>
+                                        <div style={{ display: 'flex', alignItems: 'center', gap: '12px' }}>
+                                            <div style={{ width: '44px', height: '44px', borderRadius: '50%', backgroundColor: '#f97316', display: 'flex', alignItems: 'center', justifyContent: 'center', color: '#fff', fontSize: '16px', fontWeight: 700 }}>A</div>
+                                            <div>
+                                                <div style={{ fontSize: '14px', fontWeight: 500, color: '#6b7280' }}>Good Morning,</div>
+                                                <div style={{ fontSize: '20px', fontWeight: 800 }}>Avdhoot</div>
+                                            </div>
+                                        </div>
+                                        <div style={{ width: '40px', height: '40px', borderRadius: '50%', border: '1px solid #e5e7eb', display: 'flex', alignItems: 'center', justifyContent: 'center', color: '#111' }}>
+                                            <Bell size={18} />
+                                        </div>
+                                    </div>
+
+                                    {/* Primary Action */}
+                                    <div style={{ padding: '0 24px' }}>
+                                        <motion.div
+                                            whileHover={{ scale: 1.02 }}
+                                            whileTap={{ scale: 0.98 }}
+                                            onClick={() => setScreen('translate')}
+                                            style={{ backgroundColor: '#f97316', borderRadius: '24px', padding: '24px', boxShadow: '0 10px 30px rgba(249,115,22,0.2)', display: 'flex', flexDirection: 'column', gap: '16px', cursor: 'pointer', position: 'relative', overflow: 'hidden' }}
+                                        >
+                                            <div style={{ position: 'absolute', top: '-20px', right: '-20px', width: '100px', height: '100px', borderRadius: '50%', backgroundColor: 'rgba(255,255,255,0.1)' }}></div>
+                                            <div style={{ width: '56px', height: '56px', borderRadius: '16px', backgroundColor: 'rgba(255,255,255,0.2)', display: 'flex', alignItems: 'center', justifyContent: 'center', backdropFilter: 'blur(5px)' }}>
+                                                <Camera size={28} color="#fff" />
+                                            </div>
+                                            <div style={{ color: '#fff' }}>
+                                                <div style={{ fontSize: '20px', fontWeight: 700 }}>Start Live Translation</div>
+                                                <div style={{ fontSize: '14px', opacity: 0.9, marginTop: '4px' }}>Sign to Text & Speech instantly</div>
+                                            </div>
+                                        </motion.div>
+                                    </div>
+
+                                    {/* Carousel Section */}
+                                    <div style={{ marginTop: '30px' }}>
+                                        <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', padding: '0 24px', marginBottom: '16px' }}>
+                                            <h3 style={{ fontSize: '18px', fontWeight: 800 }}>Recent Translations</h3>
+                                            <span style={{ fontSize: '13px', color: '#f97316', fontWeight: 600 }}>View All</span>
+                                        </div>
+                                        <div style={{ display: 'flex', gap: '16px', padding: '0 24px', overflowX: 'auto', scrollbarWidth: 'none', msOverflowStyle: 'none', WebkitOverflowScrolling: 'touch' }}>
+                                            {[
+                                                { text: "Good morning", time: "2m ago" },
+                                                { text: "Thank you", time: "1h ago" },
+                                                { text: "How are you", time: "3h ago" }
+                                            ].map((item, i) => (
+                                                <div key={i} style={{ minWidth: '160px', backgroundColor: '#fff7ed', borderRadius: '16px', padding: '16px', border: '1px solid #ffedd5' }}>
+                                                    <div style={{ width: '32px', height: '32px', borderRadius: '8px', backgroundColor: '#fed7aa', display: 'flex', alignItems: 'center', justifyContent: 'center', marginBottom: '12px' }}>
+                                                        <MessageSquare size={16} color="#c2410c" />
+                                                    </div>
+                                                    <div style={{ fontSize: '15px', fontWeight: 700, color: '#9a3412', marginBottom: '4px', whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis' }}>{item.text}</div>
+                                                    <div style={{ fontSize: '12px', color: '#fb923c' }}>{item.time}</div>
+                                                </div>
+                                            ))}
+                                        </div>
+                                    </div>
+
+                                    {/* Daily Goal */}
+                                    <div style={{ padding: '0 24px', marginTop: '30px' }}>
+                                        <div style={{ backgroundColor: '#f8fafc', borderRadius: '20px', padding: '20px', border: '1px solid #f1f5f9', display: 'flex', alignItems: 'center', gap: '16px' }}>
+                                            <div style={{ width: '48px', height: '48px', borderRadius: '50%', border: '4px solid #f97316', borderTopColor: '#fed7aa', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+                                                <Flame size={20} color="#f97316" />
+                                            </div>
+                                            <div>
+                                                <div style={{ fontSize: '15px', fontWeight: 700 }}>5 Day Streak!</div>
+                                                <div style={{ fontSize: '13px', color: '#64748b' }}>Complete 1 more lesson</div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </motion.div>
+                            )}
+
+                            {activeTab !== 'home' && (
+                                <div style={{ flex: 1, display: 'flex', alignItems: 'center', justifyContent: 'center', color: '#9ca3af', height: '100%' }}>
+                                    <div style={{ textAlign: 'center' }}>
+                                        <div style={{ fontSize: '48px', marginBottom: '16px' }}>🚧</div>
+                                        <div style={{ fontSize: '18px', fontWeight: 600 }}>{activeTab.charAt(0).toUpperCase() + activeTab.slice(1)} Feed</div>
+                                        <div style={{ fontSize: '14px', marginTop: '8px' }}>Module in development</div>
+                                    </div>
+                                </div>
+                            )}
+                        </div>
+
+                        {/* Bottom App Bar */}
+                        <div style={{ padding: '16px 24px', backgroundColor: '#fff', borderTop: '1px solid #f1f5f9', display: 'flex', justifyContent: 'space-between', alignItems: 'center', paddingBottom: '30px' }}>
+                            {[
+                                { id: 'home', icon: <User size={24} /> /* Reusing User as Home icon equivalent for now or Activity */ },
+                                { id: 'translate', icon: <Camera size={24} /> },
+                                { id: 'learn', icon: <MessageSquare size={24} /> },
+                                { id: 'profile', icon: <Settings size={24} /> }
+                            ].map((tab) => {
+                                // Overriding icons to match request nicely
+                                let Icon = Activity;
+                                if (tab.id === 'home') Icon = User;
+                                if (tab.id === 'translate') Icon = ArrowRightLeft;
+                                if (tab.id === 'learn') Icon = MessageSquare;
+                                if (tab.id === 'profile') Icon = Settings;
+
+                                const isActive = activeTab === tab.id;
+
+                                return (
+                                    <div
+                                        key={tab.id}
+                                        onClick={() => tab.id === 'translate' ? setScreen('translate') : setActiveTab(tab.id)}
+                                        style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '4px', cursor: 'pointer', color: isActive ? '#f97316' : '#9ca3af' }}
+                                    >
+                                        <motion.div whileTap={{ scale: 0.9 }}>
+                                            <Icon size={24} color={isActive ? '#f97316' : '#9ca3af'} />
+                                        </motion.div>
+                                        {isActive && <motion.div layoutId="nav-pill" style={{ width: '4px', height: '4px', borderRadius: '50%', backgroundColor: '#f97316', marginTop: '2px' }} />}
+                                    </div>
+                                )
+                            })}
+                        </div>
                     </motion.div>
                 )}
             </AnimatePresence>
